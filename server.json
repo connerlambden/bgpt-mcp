@@ -1,8 +1,13 @@
 {
-  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-07-09/server.schema.json",
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
   "name": "com.bgpt/mcp-api",
-  "description": "Search scientific papers from any MCP tool. Raw experimental results from full-text papers — methods, results, quality scores. 50 free searches, then $0.01/result.",
+  "title": "BGPT - Scientific Paper Search",
+  "description": "Search scientific papers with raw experimental data from full-text studies. Returns methods, results, quality scores, and 25+ metadata fields per paper. 50 free searches, then $0.01/result with an API key.",
   "version": "1.0.0",
+  "repository": {
+    "url": "https://github.com/connerlambden/bgpt-mcp",
+    "source": "github"
+  },
   "remotes": [
     {
       "type": "sse",
