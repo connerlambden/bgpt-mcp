@@ -1,0 +1,12 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-07-09/server.schema.json",
+  "name": "com.bgpt/mcp-api",
+  "description": "Search scientific papers from any MCP tool. Raw experimental results from full-text papers — methods, results, quality scores. 50 free searches, then $0.01/result.",
+  "version": "1.0.0",
+  "remotes": [
+    {
+      "type": "sse",
+      "url": "https://bgpt.pro/mcp/sse"
+    }
+  ]
+}

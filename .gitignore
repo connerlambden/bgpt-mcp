@@ -1,0 +1,29 @@
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Environment
+.env
+.env.local
+
+# Node (if examples use it)
+node_modules/
+package-lock.json
+
+# Python (if examples use it)
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Keys / secrets
+*.pem
+*.key
+credentials.json

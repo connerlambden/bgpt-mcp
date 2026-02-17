@@ -1,0 +1,7 @@
+{
+  "mcpServers": {
+    "bgpt": {
+      "url": "https://bgpt.pro/mcp/sse"
+    }
+  }
+}
