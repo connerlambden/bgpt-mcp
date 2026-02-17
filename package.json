@@ -1,0 +1,44 @@
+{
+  "name": "bgpt-mcp",
+  "version": "1.0.0",
+  "description": "Search scientific papers from any MCP-compatible AI tool. Raw experimental data from full-text studies — methods, results, quality scores, and 25+ metadata fields per paper.",
+  "main": "index.js",
+  "bin": {
+    "bgpt-mcp": "index.js"
+  },
+  "scripts": {
+    "start": "node index.js"
+  },
+  "keywords": [
+    "mcp",
+    "mcp-server",
+    "model-context-protocol",
+    "scientific-papers",
+    "research",
+    "ai",
+    "claude",
+    "cursor",
+    "bioinformatics",
+    "pubmed",
+    "arxiv",
+    "science",
+    "papers",
+    "search"
+  ],
+  "author": "BGPT <contact@bgpt.pro> (https://bgpt.pro)",
+  "license": "MIT",
+  "homepage": "https://bgpt.pro/mcp/",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/connerlambden/bgpt-mcp.git"
+  },
+  "bugs": {
+    "url": "https://github.com/connerlambden/bgpt-mcp/issues"
+  },
+  "dependencies": {
+    "mcp-remote": "latest"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

@@ -13,9 +13,8 @@ Thumbs.db
 .env
 .env.local
 
-# Node (if examples use it)
+# Node
 node_modules/
-package-lock.json
 
 # Python (if examples use it)
 __pycache__/
@@ -27,3 +26,5 @@ venv/
 *.pem
 *.key
 credentials.json
+.mcpregistry_github_token
+.mcpregistry_registry_token
