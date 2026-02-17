@@ -1,36 +1,24 @@
-<div align="center">
+# BGPT MCP API
 
-![BGPT Logo](https://bgpt.pro/static/logo_t.png)
+**Search scientific papers from Claude, Cursor, or any MCP-compatible AI tool.**
 
-# BGPT — Scientific Paper Search for AI
+BGPT is a remote [Model Context Protocol](https://modelcontextprotocol.io/) (MCP) server that gives AI assistants access to a database of scientific papers built from full-text studies. Unlike typical search tools that return titles and abstracts, BGPT extracts **raw experimental data** — methods, results, conclusions, quality scores, sample sizes, limitations, and 25+ metadata fields per paper.
 
-**Give your AI assistant access to real experimental data from thousands of scientific papers.**
-
-[![MCP Compatible](https://img.shields.io/badge/MCP-Compatible-blue?style=for-the-badge)](https://modelcontextprotocol.io/)
-[![Remote Server](https://img.shields.io/badge/Remote_Server-No_Install-brightgreen?style=for-the-badge)](#quick-start)
-[![License: MIT](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)](LICENSE)
-[![50 Free Searches](https://img.shields.io/badge/Free_Tier-50_Searches-orange?style=for-the-badge)](https://bgpt.pro/mcp)
-
-[Live Page](https://bgpt.pro/mcp/) · [Get API Key](https://bgpt.pro/mcp) · [Report Issue](../../issues)
-
-</div>
-
----
-
-BGPT is a **remote MCP server** that gives AI assistants access to a curated database of scientific papers built from **full-text studies**. Unlike typical search tools that return titles and abstracts, BGPT extracts **raw experimental data** — methods, results, conclusions, quality scores, sample sizes, limitations, and **25+ metadata fields** per paper.
-
-No install. No Docker. No build step. Just add one config block and start searching.
+[![MCP Compatible](https://img.shields.io/badge/MCP-Compatible-blue)](https://modelcontextprotocol.io/)
+[![npm](https://img.shields.io/npm/v/bgpt-mcp)](https://www.npmjs.com/package/bgpt-mcp)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
 ---
 
 ## Quick Start
 
-Add BGPT to your MCP client — no installation, no API key needed for the free tier.
+Add BGPT to your MCP client — no API key required for the free tier (50 searches).
 
-### Cursor
+### Option A: Direct SSE Connection (Recommended)
 
-Add to your MCP settings (`.cursor/mcp.json` in your project root, or global settings):
+Most modern MCP clients support direct SSE connections:
 
+**Claude Desktop** (`claude_desktop_config.json`):
 ```json
 {
   "mcpServers": {
@@ -41,10 +29,7 @@ Add to your MCP settings (`.cursor/mcp.json` in your project root, or global set
 }
 ```
 
-### Claude Desktop
-
-Add to your `claude_desktop_config.json`:
-
+**Cursor** (`.cursor/mcp.json`):
 ```json
 {
   "mcpServers": {
@@ -55,10 +40,7 @@ Add to your `claude_desktop_config.json`:
 }
 ```
 
-### Cline / Roo Code
-
-Add to your Cline MCP settings:
-
+**Cline / Roo Code / Windsurf** — same config:
 ```json
 {
   "mcpServers": {
@@ -69,15 +51,31 @@ Add to your Cline MCP settings:
 }
 ```
 
-### Windsurf
-
-Add to your `~/.codeium/windsurf/mcp_config.json`:
+### Option B: Via npx (for clients that need a local command)
 
 ```json
 {
   "mcpServers": {
     "bgpt": {
-      "serverUrl": "https://bgpt.pro/mcp/sse"
+      "command": "npx",
+      "args": ["-y", "bgpt-mcp"]
+    }
+  }
+}
+```
+
+### Option C: Install globally
+
+```bash
+npm install -g bgpt-mcp
+```
+
+Then add to your MCP config:
+```json
+{
+  "mcpServers": {
+    "bgpt": {
+      "command": "bgpt-mcp"
     }
   }
 }
@@ -91,33 +89,35 @@ Connect to the SSE endpoint:
 https://bgpt.pro/mcp/sse
 ```
 
-**That's it.** Your AI assistant can now search scientific papers.
+That's it. No Docker, no build step.
 
 ---
 
 ## What You Get
 
-BGPT provides one powerful tool: **`search_papers`**
+BGPT provides one tool: **`search_papers`**
 
 | Parameter | Type | Required | Description |
 |-----------|------|----------|-------------|
 | `query` | string | Yes | Search terms (e.g. "CRISPR gene editing efficiency") |
-| `num_results` | integer | No | Number of results (1–100, default 10) |
-| `days_back` | integer | No | Only papers published within the last N days |
-| `api_key` | string | No | Stripe subscription ID for paid tier |
+| `num_results` | integer | No | Number of results to return (1–100, default 10) |
+| `days_back` | integer | No | Only return papers published within the last N days |
+| `api_key` | string | No | Your Stripe subscription ID for paid access |
 
-### Returned Data
+### What comes back
 
-Each paper includes **25+ structured fields** extracted from the full text:
+Each paper result includes **25+ fields**, extracted from the full text:
 
-| Category | Fields |
-|----------|--------|
-| **Identifiers** | Title, DOI, authors, journal |
-| **Core Data** | Methods, results, conclusions |
-| **Quality** | Methodological rigor scores, limitations |
-| **Metadata** | Sample sizes, study type, funding, conflicts of interest |
+- **Title & DOI** — standard identifiers
+- **Methods** — experimental design, techniques used
+- **Results** — raw findings, measurements, statistical outcomes
+- **Conclusions** — what the authors determined
+- **Quality scores** — methodological rigor assessment
+- **Sample sizes** — participant/specimen counts
+- **Limitations** — acknowledged weaknesses
+- **And more** — funding, conflicts of interest, study type, etc.
 
-### Example Usage
+### Example
 
 Ask your AI assistant:
 
@@ -125,81 +125,79 @@ Ask your AI assistant:
 
 BGPT returns structured experimental data your AI can reason over — not just a list of titles.
 
-> "Find studies comparing mRNA vaccine efficacy published in the last 90 days"
-
-> "Search for papers on gut microbiome and depression with large sample sizes"
-
----
-
-## How It Works
-
-```
-Your AI (Cursor, Claude, Cline, etc.)
-        │
-        │  MCP Protocol (SSE)
-        ▼
-   ┌─────────────────────┐
-   │  BGPT MCP Server    │
-   │  bgpt.pro/mcp/sse   │
-   └─────────┬───────────┘
-             │
-             ▼
-   ┌─────────────────────┐
-   │  BGPT Paper Database │
-   │  Full-text extracted  │
-   │  experimental data    │
-   └─────────┬───────────┘
-             │
-             ▼
-   Structured Results
-   (methods, results, quality scores, 25+ fields)
-```
-
-BGPT is **fully hosted** — your MCP client connects via Server-Sent Events (SSE). No local processes, no dependencies.
-
----
-
-## Use Cases
-
-| Use Case | Description |
-|----------|-------------|
-| **Literature Reviews** | Survey a topic with real experimental data, not just abstracts |
-| **Evidence Synthesis** | Ground AI responses in actual published findings |
-| **Research Assistance** | Find papers by methodology, outcome, or recency |
-| **Fact-Checking** | Verify claims against published experimental results |
-| **Grant Writing** | Quickly gather supporting evidence for proposals |
-| **Systematic Reviews** | Search with structured queries across the full corpus |
-
 ---
 
 ## Pricing
 
 | Tier | Cost | Details |
 |------|------|---------|
-| **Free** | $0 | 50 searches per network — no API key needed |
-| **Pay-as-you-go** | $0.01/result | Billed per result returned |
+| **Free** | $0 | 50 searches, no API key needed |
+| **Pay-as-you-go** | $0.01/result | Billed per result returned. Get an API key at [bgpt.pro/mcp](https://bgpt.pro/mcp) |
 
-Get an API key at **[bgpt.pro/mcp](https://bgpt.pro/mcp)** to unlock unlimited searches.
+---
+
+## How It Works
+
+```
+Your AI Assistant (Claude, Cursor, etc.)
+        │
+        │  MCP Protocol (SSE)
+        ▼
+   BGPT MCP Server
+   https://bgpt.pro/mcp/sse
+        │
+        │  search_papers(query, ...)
+        ▼
+   BGPT Paper Database
+   (full-text extracted data)
+        │
+        ▼
+   Structured Results
+   (methods, results, quality scores, 25+ fields)
+```
+
+BGPT is a **hosted remote server** — your MCP client connects via Server-Sent Events (SSE). No local installation needed.
+
+---
+
+## Use Cases
+
+- **Literature reviews** — Ask your AI to survey a topic with real experimental data
+- **Evidence synthesis** — Ground AI responses in actual study findings
+- **Research assistance** — Find papers by methodology, outcome, or recency
+- **Fact-checking** — Verify claims against published experimental results
+- **Grant writing** — Quickly gather supporting evidence for proposals
 
 ---
 
 ## Configuration Reference
 
+### Server Details
+
 | Field | Value |
 |-------|-------|
-| **Protocol** | MCP (Model Context Protocol) |
-| **Transport** | SSE (Server-Sent Events) |
-| **Endpoint** | `https://bgpt.pro/mcp/sse` |
-| **Auth** | None (free tier) / Stripe API key (paid) |
-| **Tool** | `search_papers` |
+| Protocol | MCP (Model Context Protocol) |
+| Transport | SSE (Server-Sent Events) |
+| Endpoint | `https://bgpt.pro/mcp/sse` |
+| Authentication | None required (free tier) / Stripe API key (paid) |
+
+### Full MCP Client Config
+
+```json
+{
+  "mcpServers": {
+    "bgpt": {
+      "url": "https://bgpt.pro/mcp/sse"
+    }
+  }
+}
+```
 
 ---
 
-## Documentation & Links
+## Documentation
 
-- **Live page & docs:** [bgpt.pro/mcp](https://bgpt.pro/mcp/)
-- **API Key & billing:** [bgpt.pro/mcp](https://bgpt.pro/mcp)
-- **MCP Protocol:** [modelcontextprotocol.io](https://modelcontextprotocol.io/)
+Full documentation, FAQ, and setup guides: **[bgpt.pro/mcp](https://bgpt.pro/mcp/)**
 
 ---
 
