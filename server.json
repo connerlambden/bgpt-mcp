@@ -2,7 +2,7 @@
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
   "name": "io.github.connerlambden/bgpt-mcp",
   "title": "BGPT - Scientific Paper Search",
-  "description": "Search scientific papers with raw experimental data from full-text studies. Returns methods, results, quality scores, and 25+ metadata fields per paper. 50 free searches, then $0.01/result with an API key.",
+  "description": "Search scientific papers with structured experimental data from full-text studies",
   "version": "1.0.1",
   "websiteUrl": "https://bgpt.pro/mcp",
   "repository": {
