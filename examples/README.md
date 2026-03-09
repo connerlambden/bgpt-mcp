@@ -9,6 +9,13 @@ Copy-paste these config files into your MCP client:
 | Claude Desktop | [`claude_desktop_config.json`](claude_desktop_config.json) | `~/Library/Application Support/Claude/claude_desktop_config.json` (macOS) or `%APPDATA%\Claude\claude_desktop_config.json` (Windows) |
 | Cursor | [`cursor_mcp.json`](cursor_mcp.json) | `.cursor/mcp.json` in your project root |
 
+### Endpoints
+
+| Transport | URL |
+|-----------|-----|
+| SSE | `https://bgpt.pro/mcp/sse` |
+| Streamable HTTP | `https://bgpt.pro/mcp/stream` |
+
 ## Direct API Usage
 
 - [`python_example.py`](python_example.py) — Call BGPT directly via HTTP (no MCP client needed)

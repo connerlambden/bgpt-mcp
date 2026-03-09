@@ -14,9 +14,14 @@ BGPT is a remote [Model Context Protocol](https://modelcontextprotocol.io/) (MCP
 
 Add BGPT to your MCP client — no API key required for the free tier (50 searches).
 
-### Option A: Direct SSE Connection (Recommended)
+### Option A: Remote Connection (Recommended)
 
-Most modern MCP clients support direct SSE connections:
+Most modern MCP clients support direct remote connections. BGPT offers two transports:
+
+| Transport | Endpoint |
+|-----------|----------|
+| **SSE** | `https://bgpt.pro/mcp/sse` |
+| **Streamable HTTP** | `https://bgpt.pro/mcp/stream` |
 
 **Claude Desktop** (`claude_desktop_config.json`):
 ```json
@@ -40,6 +45,11 @@ Most modern MCP clients support direct SSE connections:
 }
 ```
 
+**Claude Code** (CLI):
+```bash
+claude mcp add bgpt --transport sse https://bgpt.pro/mcp/sse
+```
+
 **Cline / Roo Code / Windsurf** — same config:
 ```json
 {
@@ -50,6 +60,8 @@ Most modern MCP clients support direct SSE connections:
   }
 }
 ```
+
+> **Tip:** If your client supports Streamable HTTP, you can use `https://bgpt.pro/mcp/stream` instead.
 
 ### Option B: Via npx (for clients that need a local command)
 
@@ -83,10 +95,11 @@ Then add to your MCP config:
 
 ### Any MCP Client
 
-Connect to the SSE endpoint:
+Connect to either endpoint:
 
 ```
-https://bgpt.pro/mcp/sse
+SSE:              https://bgpt.pro/mcp/sse
+Streamable HTTP:  https://bgpt.pro/mcp/stream
 ```
 
 That's it. No Docker, no build step.
@@ -141,10 +154,11 @@ BGPT returns structured experimental data your AI can reason over — not just a
 ```
 Your AI Assistant (Claude, Cursor, etc.)
         │
-        │  MCP Protocol (SSE)
+        │  MCP Protocol (SSE or Streamable HTTP)
         ▼
    BGPT MCP Server
    https://bgpt.pro/mcp/sse
+   https://bgpt.pro/mcp/stream
         │
         │  search_papers(query, ...)
         ▼
@@ -156,7 +170,7 @@ Your AI Assistant (Claude, Cursor, etc.)
    (methods, results, quality scores, 25+ fields)
 ```
 
-BGPT is a **hosted remote server** — your MCP client connects via Server-Sent Events (SSE). No local installation needed.
+BGPT is a **hosted remote server** — your MCP client connects via SSE or Streamable HTTP. No local installation needed.
 
 ---
 
@@ -177,8 +191,9 @@ BGPT is a **hosted remote server** — your MCP client connects via Server-Sent 
 | Field | Value |
 |-------|-------|
 | Protocol | MCP (Model Context Protocol) |
-| Transport | SSE (Server-Sent Events) |
-| Endpoint | `https://bgpt.pro/mcp/sse` |
+| Transport | SSE (Server-Sent Events) or Streamable HTTP |
+| SSE Endpoint | `https://bgpt.pro/mcp/sse` |
+| Streamable HTTP Endpoint | `https://bgpt.pro/mcp/stream` |
 | Authentication | None required (free tier) / Stripe API key (paid) |
 
 ### Full MCP Client Config

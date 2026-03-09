@@ -3,7 +3,7 @@
   "name": "io.github.connerlambden/bgpt-mcp",
   "title": "BGPT - Scientific Paper Search",
   "description": "Search scientific papers with structured experimental data from full-text studies",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "websiteUrl": "https://bgpt.pro/mcp",
   "repository": {
     "url": "https://github.com/connerlambden/bgpt-mcp",
@@ -13,6 +13,10 @@
     {
       "type": "sse",
       "url": "https://bgpt.pro/mcp/sse"
+    },
+    {
+      "type": "streamable-http",
+      "url": "https://bgpt.pro/mcp/stream"
     }
   ]
 }
