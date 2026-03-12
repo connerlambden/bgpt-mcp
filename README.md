@@ -4,6 +4,10 @@
 
 BGPT is a remote [Model Context Protocol](https://modelcontextprotocol.io/) (MCP) server that gives AI assistants access to a database of scientific papers built from full-text studies. Unlike typical search tools that return titles and abstracts, BGPT extracts **raw experimental data** — methods, results, conclusions, quality scores, sample sizes, limitations, and 25+ metadata fields per paper.
 
+<a href="https://glama.ai/mcp/servers/connerlambden/bgpt-mcp">
+  <img width="380" height="200" src="https://glama.ai/mcp/servers/connerlambden/bgpt-mcp/badge" alt="BGPT MCP server" />
+</a>
+
 [![MCP Compatible](https://img.shields.io/badge/MCP-Compatible-blue)](https://modelcontextprotocol.io/)
 [![npm](https://img.shields.io/npm/v/bgpt-mcp)](https://www.npmjs.com/package/bgpt-mcp)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
