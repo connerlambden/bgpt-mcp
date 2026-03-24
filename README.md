@@ -7,6 +7,7 @@ BGPT is a remote [Model Context Protocol](https://modelcontextprotocol.io/) (MCP
 [![MCP Compatible](https://img.shields.io/badge/MCP-Compatible-blue)](https://modelcontextprotocol.io/)
 [![npm](https://img.shields.io/npm/v/bgpt-mcp)](https://www.npmjs.com/package/bgpt-mcp)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+[![bgpt-mcp MCP server](https://glama.ai/mcp/servers/connerlambden/bgpt-mcp/badges/score.svg)](https://glama.ai/mcp/servers/connerlambden/bgpt-mcp)
 
 ---
 
