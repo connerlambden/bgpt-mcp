@@ -4,6 +4,11 @@ All notable changes to the BGPT MCP API will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [1.1.1] - 2026-04-05
+
+### Changed
+- Pay-as-you-go pricing is now **$0.02 per result** (previously $0.01).
+
 ## [1.1.0] - 2026-02-19
 
 ### Added

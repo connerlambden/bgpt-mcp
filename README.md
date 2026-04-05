@@ -146,7 +146,7 @@ BGPT returns structured experimental data your AI can reason over — not just a
 | Tier | Cost | Details |
 |------|------|---------|
 | **Free** | $0 | 50 free results, no API key needed |
-| **Pay-as-you-go** | $0.01/result | Billed per result returned. Get an API key at [bgpt.pro/mcp](https://bgpt.pro/mcp) |
+| **Pay-as-you-go** | $0.02/result | Billed per result returned. Get an API key at [bgpt.pro/mcp](https://bgpt.pro/mcp) |
 
 ---
 

@@ -1,6 +1,6 @@
 {
   "name": "bgpt-mcp",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "mcpName": "io.github.connerlambden/bgpt-mcp",
   "description": "Search scientific papers from any MCP-compatible AI tool. Raw experimental data from full-text studies — methods, results, quality scores, and 25+ metadata fields per paper.",
   "main": "index.js",
