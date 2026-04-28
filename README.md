@@ -1,3 +1,5 @@
+[![MseeP.ai Security Assessment Badge](https://mseep.net/pr/connerlambden-bgpt-mcp-badge.png)](https://mseep.ai/app/connerlambden-bgpt-mcp)
+
 # BGPT MCP API
 
 **Search scientific papers from Claude, Cursor, or any MCP-compatible AI tool.**
